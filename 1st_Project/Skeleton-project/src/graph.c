@@ -3,10 +3,10 @@
 
 
 graph *read_graph(char *filename) {
+	
 	return NULL;
 }
 
 void print_graph(graph *g) {
 
 }
-

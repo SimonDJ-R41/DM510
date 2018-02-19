@@ -2,10 +2,11 @@
 #define LINKED_LIST_H_
 
 // Data structure for the linked list
-typedef struct  linked_list{
+typedef struct linked_list{
 	void *data;
 	struct linked_list *next;
 	struct linked_list *previous;
+	int size; // size to keep control of the size
 } linked_list;
 
 /*
@@ -16,7 +17,7 @@ linked_list *init_linked_list();
 /*
  * Adds the supplied element to the end of the list
  */
-void add_element( linked_list *list, void *element);
+void add_element(linked_list *list, void *element);
 
 /*
  * Returns the number of elements in the list
