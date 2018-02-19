@@ -41,7 +41,8 @@ int linked_list_size(linked_list *list) {
 }
 
 void *remove_first(linked_list *list) {
-	return NULL;
+
+	int data_lookup = list->data;
 }
 
 int remove_element(linked_list *list, void *element) {

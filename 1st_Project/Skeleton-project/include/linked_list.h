@@ -25,7 +25,7 @@ void add_element(linked_list *list, void *element);
 int linked_list_size(linked_list *list);
 
 /*
- * Removes and returnes the first element from the list
+ * Removes and returns the first element from the list
  */
 void *remove_first(linked_list *list);
 
