@@ -5,46 +5,65 @@
  *      Author: jacob
  */
 #include "linked_list.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 linked_list *init_linked_list() {
 
 	linked_list *root = malloc(sizeof(linked_list));
-	root -> data = NULL;
-	root -> next = NULL;
-	root -> previous = NULL;
-	root -> size = 0;
+	root->data = NULL;
+	root->next = NULL;
+	root->previous = NULL;
 	return root;
 }
 
 void add_element(linked_list *list, void *element) {
 
-	linked_list *new_Node = malloc(sizeof(linked_list));
-	new_Node -> data = element;
-	linked_list *old = list -> previous ? list -> previous : list;
-	/* Same as:
-	if(list->previous) {
-		linked_list *old = list->previous;
-	} else {
-		linked_list *old = list;
+	linked_list *newNode = init_linked_list();
+	newNode->data = element;
+	while(list->next) {
+	 	list = list->next;
 	}
-	*/
-	old -> next = old;
-	list -> previous = new_Node;
-	new_Node -> next = list;
-	list -> size++;
+	list->next = newNode;
+	newNode->previous = list;
+}
+/*
+	size_t is always the same size as a pointer
+*/
+size_t linked_list_size(const linked_list *list) {
+	size_t i = 0;
+	while (list) {
+		i++;
+		list = list->next;
+	}
+	return i;
 }
 
-int linked_list_size(linked_list *list) {
-	return list -> size;
-}
+/*
+	Changed to double-pointer,
+	to make the list NOT point to gibberish after removal.
+	Simply easier to make a double pointer, than working with a single-pointer
+	for this case.
+*/
+void *remove_first(linked_list **list) {
 
-void *remove_first(linked_list *list) {
-
-	int data_lookup = list->data;
+	void *data = (*list)->data;
+	linked_list *old = *list;
+	*list = old->next;
+	(*list)->previous = old->previous;
+	free(old);
+	return data;
 }
 
 int remove_element(linked_list *list, void *element) {
+
+	linked_list *old = NULL;	//To keep track of where we are
+	while(list->next) {
+		list = list->next;
+		if(list->data == element) {
+			remove_first(&list);
+			list->previous = old;
+			return 0;
+		}
+		old = list;	//
+	}
 	return -1;
 }

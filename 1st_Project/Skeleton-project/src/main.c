@@ -18,6 +18,7 @@ void show_usage() {
 // First command line parameter - input file
 int main(int argc, char *argv[]) {
 
+
 	// Error checking
 	if( argc != 2) {
 		show_usage();
@@ -29,4 +30,14 @@ int main(int argc, char *argv[]) {
 
 	// Run cycle detection algorithm and output result
 	cycle_detection(g);
+
+	linked_list * mystacklist = init_linked_list();
+  int a = 5;
+	int b = 6;
+	int c = 7;
+  add_element(mystacklist,&a);
+  add_element(mystacklist,&b);
+	add_element(mystacklist,&c);
+  remove_first(&mystacklist);
+
 }
