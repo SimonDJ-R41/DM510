@@ -22,12 +22,14 @@ void add_element(linked_list *list, void *element);
 /*
  * Returns the number of elements in the list
  */
+
+ // ændret det til size_t fremfor int
 int linked_list_size(linked_list *list);
 
 /*
  * Removes and returns the first element from the list
  */
-void *remove_first(linked_list *list);
+void *remove_first(linked_list **list);
 
 /*
  * Remove the first element from the list that has the same value as supplied in element.

@@ -21,7 +21,7 @@ graph *read_graph(char *filename) {
 	for(size_t i = 0; i < size; i++) {
 		getline(&lines, &pos, fp);			// gets line for the rows
 		for(size_t j = 0; j < size; j++) {
-			if('1' == lines[j]) {
+			if(lines[j] == '1') {
 				if(array[i].out_neighbours) {
 					add_element(array[i].out_neighbours, array + j);
 				} else {
