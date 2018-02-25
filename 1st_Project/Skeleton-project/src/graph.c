@@ -19,7 +19,7 @@ graph *read_graph(char *filename) {
 	vertex *array = calloc(size, sizeof(*array));
 
 	for(size_t i = 0; i < size; i++) {
-		getline(&lines, &pos, fp);
+		getline(&lines, &pos, fp);			// gets line for the rows
 		for(size_t j = 0; j < size; j++) {
 			if('1' == lines[j]) {
 				if(array[i].out_neighbours) {
@@ -39,14 +39,14 @@ graph *read_graph(char *filename) {
 	}
 
 	fclose(fp);
-	free(array);
 
 	return NULL;
 }
 
 void print_graph(graph *g) {
-
-	for(int i = 0; i < SIZE?; i++) {
+	/*
+	for(int i = 0; i < SIZE; i++) {
 		printf("%d%s", INSERT NUMBER, list->next ? ", " : "\n");
 	}
+	*/
 }
