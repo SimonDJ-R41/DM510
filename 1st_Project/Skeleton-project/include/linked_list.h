@@ -6,7 +6,6 @@ typedef struct linked_list{
 	void *data;
 	struct linked_list *next;
 	struct linked_list *previous;
-	int size; // size to keep control of the size
 } linked_list;
 
 /*
@@ -22,8 +21,6 @@ void add_element(linked_list *list, void *element);
 /*
  * Returns the number of elements in the list
  */
-
- // ændret det til size_t fremfor int
 int linked_list_size(linked_list *list);
 
 /*

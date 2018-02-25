@@ -7,6 +7,7 @@
 #include "linked_list.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 linked_list *init_linked_list() {
 
 	linked_list *root = malloc(sizeof(linked_list));
@@ -26,17 +27,10 @@ void add_element(linked_list *list, void *element) {
 	list->next = newNode;
 	newNode->previous = list;
 }
-/*
-	size_t is always the same size as a pointer
-*/
 
-// conflicting type af size_t og int (jeg har ændret det til type int begge
-// steder)
-// har kørt din kode i visualizer og kan se at din size aldrig bliver større
-// end 1 på trods af flere elementer i listen
 int linked_list_size(linked_list *list) {
 	int i = 0;
-	while (list) {
+	while (list->next) {
 		i++;
 		list = list->next;
 	}
@@ -44,14 +38,9 @@ int linked_list_size(linked_list *list) {
 }
 
 /*
-	Changed to double-pointer,
-	to make the list NOT point to gibberish after removal.
-	Simply easier to make a double pointer, than working with a single-pointer
-	for this case.
+	Changed to double-pointer, to make the list NOT point to gibberish after removal.
+	Simply easier to make a double pointer, than working with a single-pointer for this case.
 */
-
-// du havde conflicting typer her.. dvs du har lavet list til dobbeltpointer her
-// men single pointer i header-deklerationen, så har ændret headeren for dig
 void *remove_first(linked_list **list) {
 
 	void *data = (*list)->data;

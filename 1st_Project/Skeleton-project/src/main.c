@@ -32,12 +32,13 @@ int main(int argc, char *argv[]) {
 	cycle_detection(g);
 
 	linked_list * mystacklist = init_linked_list();
-  int a = 5;
-	int b = 6;
-	int c = 7;
+
+  int a = 5, b = 6, c = 7;
+
   add_element(mystacklist,&a);
   add_element(mystacklist,&b);
 	add_element(mystacklist,&c);
+	
   remove_first(&mystacklist);
 
 }

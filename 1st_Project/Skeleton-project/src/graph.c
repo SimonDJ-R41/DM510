@@ -3,6 +3,7 @@
 #include "graph.h"
 
 graph *read_graph(char *filename) {
+
 	FILE *fp = fopen(filename, "r");	// opens the files in read-only mode
 
 	char *lines = NULL;
@@ -21,7 +22,7 @@ graph *read_graph(char *filename) {
 	for(size_t i = 0; i < size; i++) {
 		getline(&lines, &pos, fp);			// gets line for the rows
 		for(size_t j = 0; j < size; j++) {
-			if(lines[j] == '1') {
+			if(lines[j] == '1') {					// if '1' is present, a graph will be made with that element
 				if(array[i].out_neighbours) {
 					add_element(array[i].out_neighbours, array + j);
 				} else {
@@ -44,9 +45,11 @@ graph *read_graph(char *filename) {
 }
 
 void print_graph(graph *g) {
-	/*
-	for(int i = 0; i < SIZE; i++) {
-		printf("%d%s", INSERT NUMBER, list->next ? ", " : "\n");
+
+
+
+	for(int i = 0; i < lines; i++) {
+		printf("%d%s", array[j], list->next ? ", " : "\n");
 	}
-	*/
+
 }
