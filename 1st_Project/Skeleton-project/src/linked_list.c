@@ -29,9 +29,9 @@ void add_element(linked_list *list, void *element) {
 
 int linked_list_size(linked_list *list) {
 	int i = 0;																	// counter for size
-	while (list->next) {												//
-		i++;																			//
-		list = list->next;												//
+	while (list->next) {
+		i++;																			// increments the size
+		list = list->next;												// list is now placed at the next position
 	}
 	return i;																		// returns the size
 }
@@ -42,15 +42,15 @@ we want to ensure this node wont be deleted.
 Instead we delete what it points to (the real first node) then we return its data.
 */
 void *remove_first(linked_list **list) {
-    if((*list)->next->next){                 	// if linked list has more than one node
+    if((*list)->next->next){                		 	// if linked list has more than one node
       void *data = (*list)->next->data;
       linked_list *old = *list;
       linked_list *toBeDeleted = old->next;
       old->next->next->previous = (*list);
       old->next = old->next->next;
-      free(toBeDeleted);
+      free(toBeDeleted);													// frees from memory, avoiding memory leaks
       return data;
-      } else {                            		// if linked list has only one node
+      } else {                          		  		// if linked list has only one node
         void *data = (*list)->next->data;
         linked_list *toBeDeleted = (*list)->next;
         (*list)->next = NULL;
@@ -61,15 +61,15 @@ void *remove_first(linked_list **list) {
 
 int remove_element(linked_list *list, void *element) {
 
-	linked_list *old = NULL;	//To keep track of where we are
+	linked_list *old = NULL;				//To keep track of where we are
 	while(list->next) {
-		list = list->next;
-		if(list->data == element) {
-			remove_first(&list);
-			list->previous = old;
+		list = list->next;						// list is set to its next
+		if(list->data == element) {		// if the wanted element is at location, jump into the if-statement
+			remove_first(&list);				// calls the remove_first with the dereferenced list
+			list->previous = old;				//
 			return 0;
 		}
-		old = list;	//
+		old = list;										//
 	}
 	return -1;
 }
