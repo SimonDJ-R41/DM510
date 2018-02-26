@@ -19,36 +19,44 @@ linked_list *init_linked_list() {
 
 void add_element(linked_list *list, void *element) {
 
-	linked_list *newNode = init_linked_list();
-	newNode->data = element;
-	while(list->next) {
-	 	list = list->next;
-	}
-	list->next = newNode;
-	newNode->previous = list;
+	linked_list *newNode = init_linked_list();	// initializes with a 'newNode'
+	newNode->data = element;										// element given in argument goes to the data slot
+	while(list->next) {													// while there's a next element present:
+	 	list = list->next;												// list points to its next and sets itself there
+	} list->next = newNode;											// sets the next-pointer from where list currently is, to the 'newNode'
+	newNode->previous = list;										// sets the previous-pointer from 'newNode' to its previous
 }
 
 int linked_list_size(linked_list *list) {
-	int i = 0;
-	while (list->next) {
-		i++;
-		list = list->next;
+	int i = 0;																	// counter for size
+	while (list->next) {												//
+		i++;																			//
+		list = list->next;												//
 	}
-	return i;
+	return i;																		// returns the size
 }
 
 /*
-	Changed to double-pointer, to make the list NOT point to gibberish after removal.
-	Simply easier to make a double pointer, than working with a single-pointer for this case.
+because our first node is a 'control'-node without data,
+we want to ensure this node wont be deleted.
+Instead we delete what it points to (the real first node) then we return its data.
 */
 void *remove_first(linked_list **list) {
-
-	void *data = (*list)->data;
-	linked_list *old = *list;
-	*list = old->next;
-	(*list)->previous = old->previous;
-	free(old);
-	return data;
+    if((*list)->next->next){                 	// if linked list has more than one node
+      void *data = (*list)->next->data;
+      linked_list *old = *list;
+      linked_list *toBeDeleted = old->next;
+      old->next->next->previous = (*list);
+      old->next = old->next->next;
+      free(toBeDeleted);
+      return data;
+      } else {                            		// if linked list has only one node
+        void *data = (*list)->next->data;
+        linked_list *toBeDeleted = (*list)->next;
+        (*list)->next = NULL;
+        free(toBeDeleted);
+        return data;
+      }
 }
 
 int remove_element(linked_list *list, void *element) {

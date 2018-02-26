@@ -46,10 +46,4 @@ graph *read_graph(char *filename) {
 
 void print_graph(graph *g) {
 
-
-
-	for(int i = 0; i < lines; i++) {
-		printf("%d%s", array[j], list->next ? ", " : "\n");
-	}
-
 }
