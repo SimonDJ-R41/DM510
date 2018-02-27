@@ -24,25 +24,26 @@ else
 
 vertex *scan(graph * g){
   for(size_t i = 0; i < g->number_vertices; i++){
-    vertex *ptr = g->vertices + i;                              //
-    if(ptr->out_neighbours && !ptr->in_neighbours) return ptr;  //
+    vertex *ptr = g->vertices + i;                              // creates a pointer that iterates over all vertices
+    if(ptr->out_neighbours && !ptr->in_neighbours) return ptr;  // if the pointer have out_neighbours and no in_neighbours, return the pointer
   }
-  return NULL;                                                  //
+  return NULL;                                                  // returns NULL if the for-loop can't return a valid pointer
 }
 
 void cycle_detection(graph *g) {
-  char *checkmark = calloc(g->number_vertices, sizeof(*checkmark)); //
+  // create a char-pointer checkmark
+  char *checkmark = calloc(g->number_vertices, sizeof(*checkmark));
   linked_list *L = init_linked_list();  // L ← Empty list that will contain the sorted elements
   vertex *n = scan(g);                              //
   while(n) {
     printf("n is TRUE\n");
     if(L) {
-      add_element(L, n);                            //
+      add_element(L, n);                            // add element n to the list 'L'
     } else {
-      L = init_linked_list();                       //
-      L->data = n;                                  //
+      L = init_linked_list();                       // initiates the list 'L'
+      L->data = n;                                  // list 'L's data will now contain element n
     }
-    printf("%d, ", n->id);
+    printf("%d, ", n->id);                          //
     checkmark[n->id] = 1;                           //
     vertex *m = remove_first(&(n->out_neighbours)); //
     while (m) {
@@ -69,8 +70,8 @@ void cycle_detection(graph *g) {
     }
   }
 
-  free(checkmark);
-  linked_list *l = L;
+  free(checkmark);                                  // frees checkmark from the heap
+  linked_list *l = L;                               //
   while ( l ) {
     printf("%d%s", ((vertex*)l->data)->id ,l->next ? ", " : "\n" ); // prints the list
     l = l->next;

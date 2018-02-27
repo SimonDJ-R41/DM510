@@ -27,7 +27,7 @@ void add_element(linked_list *list, void *element) {
 }
 
 size_t linked_list_size(linked_list *list) {
-	size_t i = 0;																	// counter for size
+	size_t i = 0;																// counter for size
 	while (list->next) {
 		i++;																			// increments the size
 		list = list->next;												// list is now placed at the next position
@@ -64,7 +64,7 @@ void *remove_first(linked_list **list) {
 	void *data = old->data;												// the data is
 	*list = old->next;														// 'list' is now pointing towards the 'old' pointers' next
 	if (*list) (*list)->previous = old->previous;	// makes the 'list' pointer, now have its previous pointer to point towards NULL, instead of inaccessible memory
-	free(old);																		// frees up old, since the pointers have now been updated
+	free(old);																		// frees up 'old', since the pointers have now been updated
 	return data;
 
 }
@@ -84,9 +84,9 @@ int remove_element(linked_list **list, void *element) {
 	return -1;*/
 
 	if(*list) {
-		if((*list)->data == element){
+		if((*list)->data == element) {									// if the list's data is the element
 			remove_first(list);														// calls remove_first with the list when the element is located
-			return 0;
+			return 0;																			// go out of function when deletion have been made
 		}
 		return remove_element(&(*list)->next, element);	// calls the function again, with the same element and with the next block of [previous, data, next]
 	}

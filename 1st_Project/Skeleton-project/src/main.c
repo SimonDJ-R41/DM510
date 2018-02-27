@@ -28,21 +28,22 @@ int main(int argc, char *argv[]) {
 	// Build a graph from the input
 	graph *g = read_graph(argv[1]);
 
+	print_graph(g);
+
 	// Run cycle detection algorithm and output result
 	cycle_detection(g);
 
-	print_graph(g);
-
 	// linked_list * mystacklist = init_linked_list();
-  //
-  // int a = 5, b = 6, c = 7, d = 8;
-  //
-  // add_element(mystacklist, &a);
-  // add_element(mystacklist, &b);
+	//
+	// int a = 5, b = 6, c = 7, d = 8;
+	//
+	// add_element(mystacklist, &a);
+	// add_element(mystacklist, &b);
 	// add_element(mystacklist, &c);
 	// add_element(mystacklist, &d);
-  //
-  // remove_first(&mystacklist);
-  //
+	//
+	// remove_first(&mystacklist);
+	//
 	// remove_element(&mystacklist, &c);
+
 }
