@@ -51,9 +51,7 @@ A way to visualize the graph was required:
 - getline was used to read the first line, which was used as a size in a nested for-loop, that was used to read the graph as a two-dimensional array.
 - For each iteration, if the element had any 'out_neighbours', its 'edge' would be deleted, same with the element it pointed towards' 'in_neighbours'.
 
-
-
-
+--------------------------------------------------------------------------------
 
 Things I realized later, which could have made the job easier:
 - You could have made a 'NULL-header' so to say, that would create the start with a 'NULL' pointing at both the start and end of the list,
