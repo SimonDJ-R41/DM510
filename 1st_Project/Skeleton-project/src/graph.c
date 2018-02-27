@@ -17,9 +17,9 @@ graph *read_graph(char *filename) {
 	char **endptr not required for the required task
 	*/
 
-	vertex *array = calloc(size, sizeof(*array));	//
+	vertex *array = calloc(size, sizeof(*array));	// allocates a vertex 'array' on the heap
 	for (size_t i = 0; i < size; i++) {
-		array[i].id = i;														//
+		array[i].id = i;														// 
 	}
 
 	for(size_t i = 0; i < size; i++) {
@@ -29,13 +29,13 @@ graph *read_graph(char *filename) {
 				if(array[i].out_neighbours) {
 					add_element(array[i].out_neighbours, array + j);	//
 				} else {
-					array[i].out_neighbours = init_linked_list();			//
+					array[i].out_neighbours = init_linked_list();			// initiates the list
 					array[i].out_neighbours->data = array + j;				//
 				}
 				if(array[j].in_neighbours) {
 					add_element(array[j].in_neighbours, array + i);		//
 				} else {
-					array[j].in_neighbours = init_linked_list();			//
+					array[j].in_neighbours = init_linked_list();			// initiates the list
 					array[j].in_neighbours->data = array + i;					//
 				}
 			}

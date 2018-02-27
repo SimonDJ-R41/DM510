@@ -30,7 +30,7 @@ vertex *scan(graph * g){
   return NULL;                                                  // returns NULL if the for-loop can't return a valid pointer
 }
 
-void cycle_detection(graph *g) {
+/*void cycle_detection(graph *g) {
   // create a char-pointer checkmark
   char *checkmark = calloc(g->number_vertices, sizeof(*checkmark));
   linked_list *L = init_linked_list();  // L ← Empty list that will contain the sorted elements
@@ -73,7 +73,45 @@ void cycle_detection(graph *g) {
   free(checkmark);                                  // frees checkmark from the heap
   linked_list *l = L;                               //
   while ( l ) {
-    printf("%d%s", ((vertex*)l->data)->id ,l->next ? ", " : "\n" ); // prints the list
+    printf("%d%s", ((vertex*)l->data)->id, l->next ? ", " : "\n" ); // prints the list
     l = l->next;
   }
+}*/
+void cycle_detection(graph *g) {
+  char * bookkeep = calloc(g->number_vertices, sizeof(char));
+  linked_list *L = NULL;
+  vertex *n;
+  while ( (n=scan(g)) ) {
+    //printf("%d\n",n->id);
+    if(L){
+      add_element(L,n);
+    } else{
+      L = init_linked_list();
+      L->data = n;
+    }
+    bookkeep[n->id] = 1;
+    vertex *m;
+    while ((m = remove_first(&n->out_neighbours))) {
+      remove_element(&m->in_neighbours,n);
+    }
+  }
+  for(size_t i = 0 ; i < g->number_vertices ; i++){
+    if(g->vertices[i].in_neighbours){
+      printf("CYCLE DETECTED!\n");
+      goto Free;
+    } else if (!bookkeep[i]) {
+      add_element(L,g->vertices + i);
+    }
+  }
+  vertex *v;
+
+  while( (v=remove_first(&L)) ){
+    printf("%d%s", v->id, l->next ? ", " : "\n" );
+  }
+
+  Free:{
+    free(bookkeep);
+  }
+
+
 }

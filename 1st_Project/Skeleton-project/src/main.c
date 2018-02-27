@@ -28,8 +28,6 @@ int main(int argc, char *argv[]) {
 	// Build a graph from the input
 	graph *g = read_graph(argv[1]);
 
-	print_graph(g);
-
 	// Run cycle detection algorithm and output result
 	cycle_detection(g);
 
