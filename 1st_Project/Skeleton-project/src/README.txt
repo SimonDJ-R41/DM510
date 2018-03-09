@@ -43,7 +43,7 @@ NULL <- | prev | data | next |    | prev | data | next | -> NULL
         +--------------------+ <- +--------------------+
 
 This was done by first checking if there were an actual list, just for safety.
-Then an 'old' pointer for moving through the list was created, then done as above. Whichever element you wish to delete, must not be pointed to it after deletion.
+Then an 'old' pointer for moving through the list was created, then do as above, whatever you wish to delete, needs to not have something pointed to it.
 
 --------------------------------------------------------------------------------
 
@@ -54,5 +54,5 @@ A way to visualize the graph was required:
 
 --------------------------------------------------------------------------------
 
-The function 'int remove_element(linked_list **list, void *element)' in the 'linked_list' header file was changed to a double-pointer,
-to ensure that the element wouldn't point towards an invalid address, after a deletion.
+The function 'int remove_element(linked_list **list, void *element)' in the 'linked_list' header file have been changed to a double-pointer,
+to ensure that the element won't point towards an invalid address, after a deletion.

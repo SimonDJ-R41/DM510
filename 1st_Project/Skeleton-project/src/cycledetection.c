@@ -36,7 +36,7 @@ void cycle_detection(graph *g) {
   char *bookkeep = calloc(g->number_vertices, sizeof(char));    // checks for whenever something is added to the list 'L'
   linked_list *L = NULL;
   vertex *n;
-  while( (n=scan(g)) ) {
+  while( (n = scan(g)) ) {
     if(L) {
       add_element(L, n);
     } else {

@@ -22,7 +22,9 @@ void add_element(linked_list *list, void *element) {
 	newNode->data = element;													// element given in argument goes to the data slot
 	while(list->next) {																// while there's a next element present:
 	 	list = list->next;															// list points to its next and sets itself there
-	} list->next = newNode;														// sets the next-pointer from where list currently is, to the 'newNode'
+	}
+
+	list->next = newNode;															// sets the next-pointer from where list currently is, to the 'newNode'
 	newNode->previous = list;													// sets the previous-pointer from 'newNode' to its previous
 }
 
@@ -37,7 +39,7 @@ size_t linked_list_size(linked_list *list) {
 }
 
 void *remove_first(linked_list **list) {
-	
+
 	if(!(*list)) return NULL;													// if list is empty, return NULL
 	linked_list *old = *list;													// creates a pointer, to maintain the other pointer 'list'
 	void *data = old->data;														// data now points to the data of the node
