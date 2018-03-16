@@ -38,17 +38,19 @@ void cycle_detection(graph *g) {
   vertex *n;
   while( (n = scan(g)) ) {
     if(L) {
-      add_element(L, n);
+      add_element(L, n);                                        // adds the element to the list
     } else {
-      L = init_linked_list();
-      L->data = n;
+      L = init_linked_list();                                   // initiates the list
+      L->data = n;                                              // adds the element to the data
     }
+
     bookkeep[n->id] = 1;                                        // marks location as "visited"
     vertex *m;
     while( (m = remove_first(&n->out_neighbours)) ) {
       remove_element(&m->in_neighbours, n);
     }
   }
+
   for(size_t i = 0; i < g->number_vertices; i++) {
     if(g->vertices[i].in_neighbours) {
       printf("CYCLE DETECTED!\n");
@@ -57,14 +59,15 @@ void cycle_detection(graph *g) {
       add_element(L, g->vertices + i);
     }
   }
+
   vertex *v;
   linked_list *l = L;
-  while(l && ( v = l->data ) ) {
+  while(l && ( v = l->data )) {
     printf("%d%s", v->id, l->next ? ", " : "\n" );
     l = l->next;
   }
 
-  Free: {
+  Free: {                                                     // label to free up the bookkeep
     free(bookkeep);
   }
 }
